@@ -16,9 +16,19 @@
         margin: 0;
         padding: 0;
       }
+      #divSearch {
+        font-size: 3em;
+        
+      }
     </style>
   </head>
   <body>
+    <div id="divSearch">
+      <input type="text" id="zip" placeholder="Enter a Chicago zip code">
+      <button id="btnSearch">Search</button>
+    </div>
+    
+    
     <div id="map"></div>
     <script>
 
@@ -28,33 +38,10 @@
       function initMap() {
         var uluru = {lat: -25.363, lng: 131.044};
         
-$('#box').keyup(function(){
-    var valThis = $(this).val().toLowerCase();
-    var noresult = 0;
-    if(valThis == ""){
-        $('.navList > li').show();
-        noresult = 1;
-	    $('.no-results-found').remove();
-    } else {
-        $('.navList > li').each(function(){
-            var text = $(this).text().toLowerCase();
-            var match = text.indexOf(valThis);
-            if (match >= 0) {
-                $(this).show();
-                noresult = 1;
-		        $('.no-results-found').remove();
-            } else {
-                $(this).hide();
-            }
-        });
-   };
-    if (noresult == 0) {
-        $(".navList").append('<li class="no-results-found">No results found.</li>');
-    }
-});
+
 
         //   API call
-        $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?", function(response) {
+        $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?zip_code=" + $("#zip").val(), function(response) {
            //console.log(response);
            var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 9,
@@ -92,9 +79,13 @@ $('#box').keyup(function(){
       }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $("#btnSearch").on("click", initMap);
+    </script>
+
 
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWPNIhZ3r-IJP0fW-zMmqHhMOuoRirtf4&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWPNIhZ3r-IJP0fW-zMmqHhMOuoRirtf4">
     </script>
   </body>
 </html>
