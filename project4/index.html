@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Project 4</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #34282C; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="650"></canvas>
+
+<script>
+
+var drawImage;
+var ctx = canvas.getContext("2d");
+var harm;
+var beni;
+var x = 0;
+var y = 0;
+var score = 0;
+var lives = 3;
+var numDrops = 50;
+var falDrops = [];
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+var image = document.getElementById('https://i.pinimg.com/736x/a3/a2/90/a3a290f29bebd9a080b9667bb3fc759d--isometric-art-game-art.jpg');
+
+ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
+</script>
+</body>
+</html>
