@@ -27,7 +27,7 @@ var fallingDrops = [];
 
     function draw() {
         drawBackground();
-        
+
         for (var i=0; i< noOfDrops; i++)
         {
         ctx.drawImage (fallingDrops[i].image, fallingDrops[i].x, fallingDrops[i].y); //The rain drop
@@ -37,7 +37,7 @@ var fallingDrops = [];
         fallingDrops[i].y = -25 //Account for the image size
         fallingDrops[i].x = Math.random() * 600;    //Make it appear randomly along the width    
         }
-        
+
         }
     }
 
@@ -46,16 +46,16 @@ var fallingDrops = [];
 
         if (canvas.getContext) {
                 ctx = canvas.getContext('2d');
-            
+
                     imgBg = new Image();
             imgBg.src = "http://lorempixel.com/600/600/sports/";
         setInterval(draw, 36);
         for (var i = 0; i < noOfDrops; i++) {
             var fallingDr = new Object();
             fallingDr["image"] =  new Image();
-        fallingDr.image.src = 'http://piq.codeus.net/static/media/userpics/piq_57991_400x400.png';
-                
-            fallingDr["x"] = Math.random() * 5;
+        fallingDr.image.src = 'http://lorempixel.com/10/10/sports/';
+
+            fallingDr["x"] = Math.random() * 600;
             fallingDr["y"] = Math.random() * 5;
             fallingDr["speed"] = 3 + Math.random() * 5;
             fallingDrops.push(fallingDr);
@@ -63,9 +63,6 @@ var fallingDrops = [];
 
         }
     }
-
-
-
 
 setup();
 </script>
