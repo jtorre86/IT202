@@ -3,14 +3,12 @@
 <head>
 	<script src="jquery-3.2.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" /> <!-- reset css -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-    
     <meta charset="utf-8" />
     <title>Project 4</title>
     <style>
     	* { padding: 0; margin: 0; }
     	canvas { background: #34282C; display: block; margin: 0 auto; }
+
     </style>
 </head>
 <body>
@@ -21,8 +19,10 @@
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var harm;
-var beni;
+
+var harm = "red";
+var beni = "blue";
+
 var player;
 var x = 0;
 var y = 0;
@@ -34,7 +34,6 @@ var spawnRateOfDescent = 5;
 var lastSpawn = -1;
 var objects = [];
 var startTime = Date.now();
-animate();
 
 function drawScore() {
     ctx.font = "16px Arial";
@@ -46,31 +45,19 @@ function drawLives() {
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText("Lives: "+lives, canvas.width-65, 20);
 }
-function beni(){
-    ctx.beginPath();
-    ctx.arc(240, 160, 20, 0, Math.PI*2, false);
-    ctx.fillStyle = "green";
-    ctx.fill();
-    ctx.closePath();
-}
-function harm(){
-    ctx.beginPath();
-    ctx.arc(240, 160, 20, 0, Math.PI*2, false);
-    ctx.fillStyle = "green";
-    ctx.fill();
-    ctx.closePath();
-}
-function draw(){
+function drawBoard(){
     drawScore();
     drawLives();
-    requestAnimationFrame(draw);
+    requestAnimationFrame(drawBoard);
 }
+
+
 function spawnRandomObject() {
     var t;
     if (Math.random() < 0.50) {
-        t = "red";
+        t = beni;
     } else {
-        t = "blue";
+        t = harm;
     }
     var object = {
         type: t,
@@ -81,6 +68,7 @@ function spawnRandomObject() {
 }
 function animate() {
     var time = Date.now();
+    
     if (time > (lastSpawn + spawnRate)) {
         lastSpawn = time;
         spawnRandomObject();
@@ -97,7 +85,8 @@ function animate() {
         ctx.fill();
     }
 }
-draw();
+animate();
+drawBoard();
 </script>
 </body>
 </html>
