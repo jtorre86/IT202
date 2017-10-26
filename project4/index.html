@@ -21,11 +21,14 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 var harm = "red";
-var beni = "blue";
+var beni = "green";
 
 var player;
+
 var x = 0;
 var y = 0;
+var dx = 2;
+var dy = -2;
 var score = 0;
 var lives = 3;
 var spawnLineY = 0;
@@ -34,7 +37,21 @@ var spawnRateOfDescent = 5;
 var lastSpawn = -1;
 var objects = [];
 var startTime = Date.now();
+var rightPressed = false;
+var leftPressed = false;
+var paddleWidth = 75;
+var paddleX = (canvas.width-paddleWidth)/2;
+var paddleHeight = 10;
 
+
+
+function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
 function drawScore() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#FFFFFF";
@@ -48,6 +65,17 @@ function drawLives() {
 function drawBoard(){
     drawScore();
     drawLives();
+    drawPaddle();
+    if(rightPressed && paddleX < canvas.width-paddleWidth) {
+        paddleX += 7;
+    }
+    else if(leftPressed && paddleX > 0) {
+        paddleX -= 7;
+    }
+    
+    x += dx;
+    y += dy;
+    
     requestAnimationFrame(drawBoard);
 }
 
@@ -66,14 +94,14 @@ function spawnRandomObject() {
     }
     objects.push(object);
 }
-function animate() {
+function drop() {
     var time = Date.now();
     
     if (time > (lastSpawn + spawnRate)) {
         lastSpawn = time;
         spawnRandomObject();
     }
-    requestAnimationFrame(animate);
+    requestAnimationFrame(drop);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var i = 0; i < objects.length; i++) {
         var object = objects[i];
@@ -85,8 +113,30 @@ function animate() {
         ctx.fill();
     }
 }
-animate();
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = true;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = true;
+    }
+}
+function keyUpHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = false;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = false;
+    }
+}
+
+
+drop();
 drawBoard();
+
 </script>
 </body>
 </html>
