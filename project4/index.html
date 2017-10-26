@@ -20,8 +20,8 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var harm = "red";
-var beni = "green";
+var harm = "#800000";
+var beni = "#00FF00";
 
 var player;
 
@@ -39,16 +39,16 @@ var objects = [];
 var startTime = Date.now();
 var rightPressed = false;
 var leftPressed = false;
-var paddleWidth = 75;
-var paddleX = (canvas.width-paddleWidth)/2;
-var paddleHeight = 10;
+var boxWidth = 20;
+var playerBox = (canvas.width-boxWidth)/2;
+var boxHeight = 20;
 
 
 
-function drawPaddle() {
+function drawPlayer() {
     ctx.beginPath();
-    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.rect(playerBox, canvas.height-boxHeight, boxWidth, boxHeight);
+    ctx.fillStyle = "#FFFFFF";
     ctx.fill();
     ctx.closePath();
 }
@@ -65,14 +65,14 @@ function drawLives() {
 function drawBoard(){
     drawScore();
     drawLives();
-    drawPaddle();
-    if(rightPressed && paddleX < canvas.width-paddleWidth) {
-        paddleX += 7;
-    }
-    else if(leftPressed && paddleX > 0) {
-        paddleX -= 7;
-    }
+    drawPlayer();
     
+if(rightPressed && playerBox < canvas.width-boxWidth){
+        playerBox += 7;
+}
+else if(leftPressed && playerBox > 0){
+        playerBox -= 7;
+}
     x += dx;
     y += dy;
     
@@ -80,7 +80,7 @@ function drawBoard(){
 }
 
 
-function spawnRandomObject() {
+function spawnObject() {
     var t;
     if (Math.random() < 0.50) {
         t = beni;
@@ -99,7 +99,7 @@ function drop() {
     
     if (time > (lastSpawn + spawnRate)) {
         lastSpawn = time;
-        spawnRandomObject();
+        spawnObject();
     }
     requestAnimationFrame(drop);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
