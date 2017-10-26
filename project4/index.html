@@ -75,7 +75,13 @@ else if(leftPressed && playerBox > 0){
 }
     x += dx;
     y += dy;
-    
+
+if (playerBox.x < objects.x + objects.width &&
+   playerBox.x + playerBox.width > objects.x &&
+   playerBox.y < objects.y + objects.height &&
+   playerBox.height + playerBox.y > objects.y) {
+    alert("GAME OVER");
+}    
     requestAnimationFrame(drawBoard);
 }
 
@@ -102,6 +108,7 @@ function drop() {
         spawnObject();
     }
     requestAnimationFrame(drop);
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var i = 0; i < objects.length; i++) {
         var object = objects[i];
