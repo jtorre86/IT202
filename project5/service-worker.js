@@ -13,26 +13,8 @@
 // limitations under the License.
 
 var dataCacheName = 'weatherData-v1';
-var cacheName = 'weatherPWA-step-8-1';
-var filesToCache = [
-  '/',
-  'https://preview.c9users.io/jtorre86/it202/project5/index.html',
-  'https://preview.c9users.io/jtorre86/it202/project5/scripts/app.js',
-  'https://preview.c9users.io/jtorre86/it202/project5/styles/inline.css',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/clear.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/cloudy-scattered-showers.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/cloudy.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/fog.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/ic_add_white_24px.svg',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/ic_refresh_white_24px.svg',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/partly-cloudy.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/rain.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/scattered-showers.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/sleet.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/snow.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/thunderstorm.png',
-  'https://preview.c9users.io/jtorre86/it202/project5/images/wind.png'
-];
+var cacheName = 'appCache';
+var filesToCache = [];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
